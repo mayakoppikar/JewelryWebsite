@@ -1,0 +1,152 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Meghna Mangnaik Jewelry</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="htps://clipart.info/images/ccovers/1559839401black-star-png-10.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    <script type="text/javascript">
+        var user = '{{ request.user }}'
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
+    <!-- metadata -->
+    <meta charset="utf-8" />
+
+    <meta charset="utf-8" />
+</head>
+<body style="background-color: rgb(255, 201, 153);">
+
+
+
+    <div>
+        <div class="dropdown">
+            <button class="dropbtn">My Account</button>
+            <div class="dropdown-content">
+                <a href="/login">Login</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+
+
+    <div>
+
+        <center>
+            <h1 style="color:black; font-family:Algerian;font-size:50px;">Products✨</h1>
+        </center>
+        <nav class="navbar" style="width:20%; margin:auto;">
+            <div>
+                <a href="/"><img src="{% static 'images/homeicon.png' %}" style="width:30px;height:30px;"></a>
+            </div>
+            <div>
+                <a href="/about" style="color:#808080; font-size:14px;">About</a>
+            </div>
+
+            <div>
+                <a href="/mangnaik/cart"><img src="{% static 'images/cart.png' %}" style="width:30px;height:30px;"></a>
+                <h6>{{ cartItems }} </h6>
+            </div>
+        </nav>
+    </div>
+
+
+    <center>
+        <p style="color:black;"><b>Click on an item's code for a detailed view!</b> <button style="margin-left:20px;"><a href="filteredproducts">Filter Your Search</a></button></p>
+    </center>
+
+
+
+
+
+    {% for product in prod %}
+    <div style="margin-left:20px;margin-bottom:10px; margin-top:10px; display: inline-block; width: 30%;color:black;border-style:solid;"><center><img src="{{ product.image.url }}" style="height:200px; width:300px; margin-top:10px; margin-bottom:5px;"> </center><p style="color:black; margin-left:10px;">Code: <a href="/mangnaik/products/{{product.code}}">{{product.code}} </a><br />Price: ${{product.price}} <br /> Jewelry Type: {{product.jewelrytype}} <br /> Description: {{product.description}} <br />Color: {{product.color}} <br /> </p> <button data-product="{{ product.code }}" data-action="add" class="btn add-btn update-cart">Add to Cart</button></div>
+    {% endfor %}
+
+
+
+
+    <div style="margin-left:100px; margin-bottom:100px;">
+
+        <a href="mailto: Maggi4221@outlook.com"><img src="https://static.vecteezy.com/system/resources/previews/006/697/974/original/mail-email-icon-template-black-color-editable-mail-email-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" style="width:35px;height:35px;"></a>
+        <a href="https://www.instagram.com/meghnamangnaik/"><img src="https://www.nicepng.com/png/detail/1-13041_logo-instagram-with-white-circle-background-png-new.png" style="width:25px;height:25px;"></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>
